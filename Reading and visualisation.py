@@ -38,4 +38,31 @@ axs[0].set_xlabel('X Axis')
 axs[0].set_ylabel('Y Axis')
 
 # 电磁场可视化
-sns.heatmap(electromagnetic_field,
+sns.heatmap(electromagnetic_field, annot=True, cmap='viridis', ax=axs[1])
+axs[1].set_title('Transformer Electromagnetic Field')
+axs[1].set_xlabel('X Axis')
+axs[1].set_ylabel('Y Axis')
+
+# 内部结构状态可视化
+sns.heatmap(internal_structure, annot=True, cmap='Greys', ax=axs[2])
+axs[2].set_title('Transformer Internal Structure')
+axs[2].set_xlabel('X Axis')
+axs[2].set_ylabel('Y Axis')
+
+# 环境条件可视化
+env_data = np.array([[environment_conditions['temperature'], environment_conditions['humidity']]])
+sns.heatmap(env_data, annot=True, cmap='YlGnBu', ax=axs[3], cbar=False, xticklabels=['Temperature (°C)', 'Humidity (%)'])
+axs[3].set_title('Environment Conditions')
+axs[3].set_xticklabels(['Temperature (°C)', 'Humidity (%)'])
+axs[3].set_yticklabels(['Environment'], rotation=0)
+
+# 维护记录和历史数据可视化
+axs[4].set_title('Maintenance Records and Historical Data')
+axs[4].plot(historical_data['temperature'], label='Historical Temperature')
+axs[4].plot(historical_data['load'], label='Historical Load')
+axs[4].set_xlabel('Time')
+axs[4].set_ylabel('Values')
+axs[4].legend()
+
+plt.tight_layout()
+plt.show()
